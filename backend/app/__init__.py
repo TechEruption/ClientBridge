@@ -1,0 +1,1 @@
+"""ClientBridge FastAPI application."""
