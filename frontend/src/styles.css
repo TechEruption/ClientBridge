@@ -52,6 +52,9 @@ button { cursor: pointer; }
 .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .enquiry-form label, .login-card label, .panel label { display: flex; flex-direction: column; gap: 7px; color: var(--navy); font-size: 13px; font-weight: 800; }
 .enquiry-form input, .enquiry-form select, .enquiry-form textarea, .login-card input, .panel input, .panel select, .panel textarea { width: 100%; border: 1px solid var(--line); border-radius: 4px; padding: 11px 12px; background: white; color: var(--ink); font-weight: 400; }
+.enquiry-form select[multiple] { min-height: 132px; border-radius: 12px; padding: 8px; }
+.enquiry-form select[multiple] option { padding: 7px 8px; }
+.field-hint { color: var(--muted); font-size: 11px; font-weight: 400; }
 .enquiry-form textarea, .panel textarea { resize: vertical; }
 .error { color: #b42318; font-size: 12px; }
 .honeypot { position: absolute; left: -10000px; }

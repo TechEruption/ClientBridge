@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
+import { INDUSTRIES, PRODUCTS } from "../catalogue";
 
 const TYPES = [
   ["new_client", "New customer", "First time contacting us"],
@@ -11,7 +12,6 @@ const TYPES = [
 const NAME_ERROR = "Only alphabets, hyphens and apostrophes";
 
 export default function EnquiryForm({ sessionId }) {
-  const [options, setOptions] = useState({ products: [], industries: [] });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [thanks, setThanks] = useState("");
@@ -23,7 +23,6 @@ export default function EnquiryForm({ sessionId }) {
   });
 
   useEffect(() => {
-    api("/api/catalogue/options").then(setOptions).catch(() => {});
     const savedEmail = localStorage.getItem("seallink_client_email");
     if (savedEmail) setForm((current) => ({ ...current, company_email: savedEmail }));
   }, []);
@@ -107,15 +106,16 @@ export default function EnquiryForm({ sessionId }) {
           Industry
           <select name="industry" value={form.industry} onChange={setField}>
             <option value="">Select industry</option>
-            {options.industries.map((value) => <option key={value}>{value}</option>)}
+            {INDUSTRIES.map((value) => <option key={value}>{value}</option>)}
           </select>
           {errors.industry && <small className="error">{errors.industry}</small>}
         </label>
         <label>
           Product interest
-          <select multiple name="product_interest" value={form.product_interest} onChange={(event) => setForm((current) => ({ ...current, product_interest: [...event.target.selectedOptions].map((option) => option.value) }))}>
-            {options.products.map((value) => <option key={value} value={value}>{value}</option>)}
+          <select multiple name="product_interest" size="4" value={form.product_interest} onChange={(event) => setForm((current) => ({ ...current, product_interest: [...event.target.selectedOptions].map((option) => option.value) }))}>
+            {PRODUCTS.map((value) => <option key={value} value={value}>{value}</option>)}
           </select>
+          <small className="field-hint">Select one or more products. On a computer, use Ctrl-click to select multiple.</small>
           {errors.product_interest && <small className="error">{errors.product_interest}</small>}
         </label>
       </div>

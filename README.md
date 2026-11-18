@@ -47,6 +47,8 @@ The FastAPI backend cannot run directly on Netlify Static Hosting. Deploy this f
 - Backend Gmail variables: `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `MAIL_RECIPIENT`, `MAIL_POLL_SECONDS`
 - Backend JSON storage requires persistent disk or it resets on redeploy/restart
 
+The industry and product dropdown data is bundled with the frontend, so it displays even before the backend is connected. Form submission, admin data, chat, and mail still require `VITE_API_URL` to point to a running backend. Do not use the example placeholder URL.
+
 Gmail polling only works while the backend process remains running. Multiple comma-separated Netlify origins may be placed in `FRONTEND_ORIGIN`.
 
 ## Environment
